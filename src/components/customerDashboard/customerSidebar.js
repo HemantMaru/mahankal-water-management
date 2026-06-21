@@ -1,35 +1,34 @@
 import React from "react";
 import {
   LayoutDashboard,
-  Users,
-  ShoppingCart,
-  Truck,
+  ShoppingBag,
+  CalendarDays,
+  MapPin,
   CreditCard,
-  Car,
-  BarChart3,
   FileText,
-  Settings,
+  User,
+  Headset,
   LogOut,
   Droplets,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const menuItems = [
   { icon: LayoutDashboard, label: "Dashboard", active: true },
-  { icon: Users, label: "Customers" },
-  { icon: ShoppingCart, label: "Orders" },
-  { icon: Truck, label: "Deliveries" },
+  { icon: ShoppingBag, label: "My Orders" },
+  { icon: CalendarDays, label: "Subscription" },
+  { icon: MapPin, label: "Track Delivery" },
   { icon: CreditCard, label: "Payments" },
-  { icon: Car, label: "Vehicles" },
-  { icon: BarChart3, label: "Analytics" },
-  { icon: FileText, label: "Reports" },
+  { icon: FileText, label: "Invoices" },
+  { icon: User, label: "Profile" },
 ];
 
-export default function Sidebar() {
-  return (
-    <div className="w-64 h-screen border-r bg-slate-50/50 flex flex-col fixed left-0 top-0 z-50">
+export default function CustomerSidebar() {
+  const SidebarContent = () => (
+    <div className="flex flex-col h-full bg-white border-r">
       <div className="p-6">
         <div className="flex items-center gap-3 group cursor-pointer">
           <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
@@ -40,7 +39,7 @@ export default function Sidebar() {
               Mahankal <span className="text-primary italic">RO</span>
             </span>
             <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 mt-1">
-              Purity in Every Drop
+              Premium Hydration
             </span>
           </div>
         </div>
@@ -55,7 +54,7 @@ export default function Sidebar() {
                 "w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition-all duration-200 group",
                 item.active
                   ? "bg-primary text-white shadow-lg shadow-primary/20"
-                  : "text-slate-500 hover:bg-slate-100 hover:text-slate-900",
+                  : "text-slate-500 hover:bg-slate-50 hover:text-slate-900",
               )}
             >
               <item.icon
@@ -72,13 +71,13 @@ export default function Sidebar() {
           ))}
         </div>
 
-        <div className="mt-8 pt-8 border-t border-slate-200">
-          <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition-all group">
-            <Settings
+        <div className="mt-8 pt-8 border-t border-slate-100">
+          <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all group">
+            <Headset
               size={20}
-              className="text-slate-400 group-hover:text-primary transition-transform group-hover:rotate-45"
+              className="text-slate-400 group-hover:text-primary transition-transform group-hover:rotate-12"
             />
-            Settings
+            Support
           </button>
         </div>
       </ScrollArea>
@@ -93,5 +92,13 @@ export default function Sidebar() {
         </Button>
       </div>
     </div>
+  );
+
+  return (
+    <>
+      <aside className="hidden lg:flex w-64 h-screen fixed left-0 top-0 z-40">
+        <SidebarContent />
+      </aside>
+    </>
   );
 }

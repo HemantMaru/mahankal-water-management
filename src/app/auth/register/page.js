@@ -24,7 +24,8 @@ import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "@/hooks/useAuth";
-import { registerSchema } from "@/validation/auth.validation";
+import { registerSchema } from "@/validation/register.validation.js";
+import { signIn } from "next-auth/react";
 export default function RegisterPage() {
   const { handleRegister } = useAuth();
   const form = useForm({
@@ -363,6 +364,11 @@ export default function RegisterPage() {
 
             {/* Google Action */}
             <Button
+              onClick={() =>
+                signIn("google", {
+                  callbackUrl: "/auth/success",
+                })
+              }
               variant="outline"
               className="w-full h-12 lg:h-11 border-slate-200 hover:bg-slate-50 hover:border-slate-300 rounded-xl text-slate-700 font-bold flex items-center justify-center gap-2 transition-all duration-300"
             >

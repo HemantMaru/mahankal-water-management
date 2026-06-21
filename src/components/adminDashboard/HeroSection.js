@@ -1,74 +1,87 @@
-import React from "react";
 import { Button } from "@/components/ui/button";
-import { UserPlus, ShoppingCart, ArrowRight } from "lucide-react";
+import {
+  PlusCircle,
+  Droplet,
+  CreditCard,
+  CalendarPlus,
+  Truck,
+  AlertCircle,
+  IndianRupee,
+} from "lucide-react";
 
 export default function HeroSection() {
   return (
-    <div className="relative h-64 rounded-[32px] overflow-hidden mb-8 group shadow-2xl shadow-primary/10">
-      <img
-        src="{{DATA:IMAGE:IMAGE_54}}"
-        alt="Mahankal RO Plant"
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-      />
-      <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/40 to-transparent" />
-
-      <div className="absolute inset-0 flex flex-col justify-center px-12 z-10">
-        <div className="max-w-xl space-y-6 animate-in fade-in slide-in-from-left-8 duration-700">
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full text-white text-[10px] font-black tracking-[0.2em] uppercase">
-            <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
-            Logistics Command Center
-          </div>
-
-          <div>
-            <h1 className="text-4xl font-black text-white leading-tight tracking-tight">
-              Welcome Back, <span className="text-cyan-400 italic">Hemant</span>
-            </h1>
-            <p className="text-slate-200 font-medium text-lg mt-2 leading-relaxed opacity-90">
-              Your RO systems are operating at{" "}
-              <span className="text-white font-black">98.4% efficiency</span>{" "}
-              today. Manage your fleet and customer lifecycle from one unified
-              hub.
-            </p>
-          </div>
-
-          <div className="flex gap-4">
-            <Button
-              size="lg"
-              className="bg-primary hover:bg-primary/90 text-white rounded-2xl px-8 h-12 font-black shadow-xl shadow-primary/30 group"
-            >
-              <UserPlus className="mr-2" size={18} />
-              Add Customer
-              <ArrowRight
-                className="ml-2 group-hover:translate-x-1 transition-transform"
-                size={18}
-              />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20 rounded-2xl px-8 h-12 font-black transition-all"
-            >
-              <ShoppingCart className="mr-2" size={18} />
-              Create Order
-            </Button>
-          </div>
-        </div>
+    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-900 p-6 md:p-8 lg:p-10 shadow-sm border border-blue-500/30">
+      {/* Background Image with Gradient Mask */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/admin-bg.png"
+          alt="RO Plant Background"
+          className="w-full h-full object-cover opacity-20 mix-blend-overlay"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-transparent"></div>
       </div>
 
-      <div className="absolute bottom-6 right-12 flex gap-4">
-        <div className="bg-white/10 backdrop-blur-xl border border-white/10 px-6 py-4 rounded-[24px]">
-          <div className="text-[10px] uppercase tracking-widest font-black text-slate-300">
-            Live Status
-          </div>
-          <div className="text-xl font-black text-white mt-1">
-            All Systems Normal
+      <div className="relative z-10 flex flex-col xl:flex-row items-start xl:items-center justify-between gap-6 md:gap-8">
+        {/* Left Side: Greeting & Glassmorphism Badges */}
+        <div className="max-w-2xl">
+          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-2">
+            Good Morning, <span className="text-blue-200">Hemant</span> 👋
+          </h1>
+          <p className="text-blue-100/90 text-sm md:text-base leading-relaxed max-w-lg mb-6">
+            Manage your deliveries, payments, and customers from one central
+            command center.
+          </p>
+
+          {/* New Premium Glassmorphism Badges */}
+          <div className="flex flex-wrap gap-3">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md shadow-sm">
+              <Truck className="h-4 w-4 text-cyan-300" />
+              <span className="text-xs font-medium text-white">
+                128/150 Deliveries
+              </span>
+            </div>
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md shadow-sm">
+              <AlertCircle className="h-4 w-4 text-rose-300" />
+              <span className="text-xs font-medium text-white">
+                14 Pending Dues
+              </span>
+            </div>
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md shadow-sm">
+              <IndianRupee className="h-4 w-4 text-emerald-300" />
+              <span className="text-xs font-medium text-white">
+                ₹4,250 Collected Today
+              </span>
+            </div>
           </div>
         </div>
-        <div className="bg-white/10 backdrop-blur-xl border border-white/10 px-6 py-4 rounded-[24px]">
-          <div className="text-[10px] uppercase tracking-widest font-black text-slate-300">
-            Chilled Temp
-          </div>
-          <div className="text-xl font-black text-white mt-1">4.2°C</div>
+
+        {/* Quick Action Buttons */}
+        <div className="flex flex-col sm:flex-row flex-wrap gap-3 w-full xl:w-auto mt-4 xl:mt-0">
+          <Button
+            variant="secondary"
+            className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/10 hover:border-white/30 backdrop-blur-md shadow-sm transition-all duration-300 flex-1 justify-start sm:justify-center px-4"
+          >
+            <PlusCircle className="mr-2 h-4 w-4 text-blue-200" /> Add Customer
+          </Button>
+          <Button
+            variant="secondary"
+            className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/10 hover:border-white/30 backdrop-blur-md shadow-sm transition-all duration-300 flex-1 justify-start sm:justify-center px-4"
+          >
+            <Droplet className="mr-2 h-4 w-4 text-cyan-300" /> Add Delivery
+          </Button>
+          <Button
+            variant="secondary"
+            className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/10 hover:border-white/30 backdrop-blur-md shadow-sm transition-all duration-300 flex-1 justify-start sm:justify-center px-4"
+          >
+            <CreditCard className="mr-2 h-4 w-4 text-emerald-300" /> Add Payment
+          </Button>
+          <Button
+            variant="default"
+            className="w-full sm:w-auto bg-white text-blue-700 hover:bg-blue-50 shadow-md hover:shadow-lg transition-all duration-300 font-bold border-none flex-1 justify-start sm:justify-center px-4"
+          >
+            <CalendarPlus className="mr-2 h-4 w-4" /> Event Order
+          </Button>
         </div>
       </div>
     </div>

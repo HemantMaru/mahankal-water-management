@@ -9,94 +9,72 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal, ExternalLink, Filter, Download } from "lucide-react";
+import {
+  MoreHorizontal,
+  ExternalLink,
+  Filter,
+  Download,
+  ArrowUpRight,
+} from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const orders = [
   {
     id: "ORD-8291",
-    customer: "Amit Sharma",
-    address: "B-42 Tower, Freeganj",
-    type: "Normal 20L",
+    date: "Oct 24, 2024",
+    volume: "40L (2 Jars)",
+    status: "In Transit",
+    amount: "₹160.00",
+  },
+  {
+    id: "ORD-8275",
+    date: "Oct 20, 2024",
+    volume: "20L (1 Jar)",
     status: "Delivered",
-    amount: "₹450.00",
-    date: "2 mins ago",
+    amount: "₹80.00",
   },
   {
-    id: "ORD-8292",
-    customer: "Priya Verma",
-    address: "102 Skyline, Nanakheda",
-    type: "Chilled 20L",
-    status: "Out for Delivery",
-    amount: "₹1,200.00",
-    date: "15 mins ago",
-  },
-  {
-    id: "ORD-8293",
-    customer: "Karan Gupta",
-    address: "Plot 4, Mahasweta Nagar",
-    type: "Bulk Event",
-    status: "Pending",
-    amount: "₹300.00",
-    date: "1 hour ago",
-  },
-  {
-    id: "ORD-8294",
-    customer: "Rajesh Kumar",
-    address: "G-7 Shanti Palace",
-    type: "Normal 20L",
+    id: "ORD-8262",
+    date: "Oct 15, 2024",
+    volume: "60L (3 Jars)",
     status: "Delivered",
-    amount: "₹750.00",
-    date: "2 hours ago",
+    amount: "₹240.00",
   },
   {
-    id: "ORD-8295",
-    customer: "Sneha Jain",
-    address: "A-12 Mahakal Van",
-    type: "Chilled 20L",
+    id: "ORD-8241",
+    date: "Oct 10, 2024",
+    volume: "20L (1 Jar)",
     status: "Delivered",
-    amount: "₹600.00",
-    date: "4 hours ago",
+    amount: "₹80.00",
   },
 ];
 
 const statusStyles = {
   Delivered: "bg-emerald-50 text-emerald-600 border-emerald-100",
-  "Out for Delivery": "bg-blue-50 text-blue-600 border-blue-100",
+  "In Transit": "bg-blue-50 text-blue-600 border-blue-100 animate-pulse",
   Pending: "bg-amber-50 text-amber-600 border-amber-100",
 };
 
-export default function OrdersTable() {
+export default function RecentOrders() {
   return (
-    <Card className="border-none shadow-2xl shadow-slate-200/50 rounded-[32px] overflow-hidden bg-white">
+    <Card className="border-none shadow-2xl shadow-slate-200/50 rounded-[32px] overflow-hidden bg-white h-full">
       <CardHeader className="px-8 pt-8 pb-4 flex flex-row items-center justify-between">
         <div>
           <CardTitle className="text-2xl font-black text-slate-900 tracking-tight">
             Recent Orders
           </CardTitle>
           <p className="text-sm font-bold text-slate-400 mt-1">
-            Monitor real-time delivery performance.
+            Detailed history of your hydration journey.
           </p>
         </div>
         <div className="flex gap-2">
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
-            className="rounded-xl font-bold h-10 border-slate-200 hover:bg-slate-50"
+            className="rounded-xl font-bold h-10 hover:bg-slate-50 text-primary"
           >
-            <Filter className="mr-2" size={16} />
-            Filter
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            className="rounded-xl font-bold h-10 border-slate-200 hover:bg-slate-50"
-          >
-            <Download className="mr-2" size={16} />
-            Export
-          </Button>
-          <Button size="sm" className="rounded-xl font-black h-10 px-6">
-            View All
+            View All Records
+            <ArrowUpRight className="ml-2" size={16} />
           </Button>
         </div>
       </CardHeader>
@@ -108,10 +86,10 @@ export default function OrdersTable() {
                 Order ID
               </TableHead>
               <TableHead className="font-black uppercase text-[10px] tracking-widest">
-                Customer
+                Date
               </TableHead>
               <TableHead className="font-black uppercase text-[10px] tracking-widest">
-                Type
+                Volume
               </TableHead>
               <TableHead className="font-black uppercase text-[10px] tracking-widest">
                 Status
@@ -120,7 +98,7 @@ export default function OrdersTable() {
                 Amount
               </TableHead>
               <TableHead className="font-black uppercase text-[10px] tracking-widest text-right px-8">
-                Actions
+                Action
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -133,25 +111,18 @@ export default function OrdersTable() {
                 <TableCell className="font-black text-slate-900 px-8 text-xs">
                   {order.id}
                 </TableCell>
-                <TableCell>
-                  <div className="flex flex-col">
-                    <span className="font-bold text-slate-900">
-                      {order.customer}
-                    </span>
-                    <span className="text-[10px] font-bold text-slate-400 mt-0.5 truncate max-w-[200px]">
-                      {order.address}
-                    </span>
-                  </div>
-                </TableCell>
                 <TableCell className="font-bold text-slate-600 text-xs">
-                  {order.type}
+                  {order.date}
+                </TableCell>
+                <TableCell className="font-black text-slate-900 text-xs">
+                  {order.volume}
                 </TableCell>
                 <TableCell>
                   <Badge
                     variant="outline"
                     className={
                       statusStyles[order.status] +
-                      " font-bold rounded-lg border-none"
+                      " font-bold rounded-lg border-none text-[10px]"
                     }
                   >
                     {order.status}
@@ -161,28 +132,40 @@ export default function OrdersTable() {
                   {order.amount}
                 </TableCell>
                 <TableCell className="text-right px-8">
-                  <div className="flex justify-end gap-2">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-8 w-8 rounded-lg hover:bg-slate-100"
-                    >
-                      <ExternalLink size={16} className="text-slate-400" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-8 w-8 rounded-lg hover:bg-slate-100"
-                    >
-                      <MoreHorizontal size={16} className="text-slate-400" />
-                    </Button>
-                  </div>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8 rounded-lg hover:bg-slate-100"
+                  >
+                    <Download size={16} className="text-slate-400" />
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
+        <div className="p-4 border-t border-slate-50 flex justify-center">
+          <div className="flex gap-1">
+            {[1, 2, 3].map((p) => (
+              <button
+                key={p}
+                className={cn(
+                  "w-8 h-8 rounded-lg text-xs font-black transition-all",
+                  p === 1
+                    ? "bg-primary text-white"
+                    : "text-slate-400 hover:bg-slate-50",
+                )}
+              >
+                {p}
+              </button>
+            ))}
+          </div>
+        </div>
       </CardContent>
     </Card>
   );
+}
+
+function cn(...classes) {
+  return classes.filter(Boolean).join(" ");
 }
